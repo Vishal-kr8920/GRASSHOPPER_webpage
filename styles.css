@@ -1,0 +1,295 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    line-height: 1.6;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+header nav ul li a:hover {
+    color: #ff6347;
+}
+header .user-options {
+    display: flex;
+    gap: 1rem;
+}
+header .user-options a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: rgba(0, 0, 0, 0.5);
+}
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.hero-section .btn {
+    background: #ff6347;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.hero-section .btn:hover {
+    background: #ff4500;
+}
+
+.section {
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    margin-bottom: 2rem;
+}
+.section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.product {
+    background: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.product h3 {
+    font-size: 1.2rem;
+    color: #ff6347;
+}
+
+
+/* Discounts Section */
+.discounts-section {
+    background: url('discounts-bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 4rem 2rem;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.discounts-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for better text readability */
+    z-index: -1;
+}
+
+.discount-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.discount-list li {
+    background: rgba(255, 99, 71, 0.8); /* Semi-transparent background for items */
+    padding: 1rem;
+    margin: 0.5rem auto;
+    max-width: 400px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+/* Cart Section */
+.cart-section {
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.cart-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cart-content img {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cart-content .cart-text {
+    max-width: 400px;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+/* About Us Section */
+.about-us-section {
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.about-item {
+    max-width: 350px;
+    text-align: center;
+    color: #fff;
+}
+
+.about-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    border: 5px solid #ff6347;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.about-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ff6347;
+}
+
+.about-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Login Section */
+.login-section {
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.option {
+    max-width: 400px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.option h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #ff6347;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: left;
+}
+
+.login-form input {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background: #333;
+    color: #fff;
+}
+
+.login-form button {
+    background: #ff6347;
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-form button:hover {
+    background: #ff4500;
+}
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
+    margin-top: 2rem;
+}
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.8);
+}
