@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Grocery Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places" async defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">GroceryShop</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#discounts">Discounts</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="user-options">
+            <a href="#cart" class="cart">🛒 Cart</a>
+            <a href="#login" class="login">Login</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <h1>Welcome to Local Grocery Shop</h1>
+        <p>Fresh Produce, Great Discounts, Convenient Shopping</p>
+        <a href="#shop" class="btn">Shop Now</a>
+    </section>
+
+    <section id="shop" class="section">
+        <h2>Shop by Category</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="vegetables.jpg" alt="Vegetables">
+                <h3>Vegetables</h3>
+            </div>
+            <div class="product">
+                <img src="fruits.jpg" alt="Fruits">
+                <h3>Fruits</h3>
+            </div>
+            <div class="product">
+                <img src="dairy.jpg" alt="Dairy">
+                <h3>Dairy</h3>
+            </div>
+            <div class="product">
+                <img src="snacks.jpg" alt="Snacks">
+                <h3>Snacks</h3>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="discounts" class="section discounts-section">
+        <h2>Exclusive Discounts</h2>
+        <ul class="discount-list">
+            <li>Spend Rs50 - Get 10% off</li>
+            <li>Spend Rs100 - Get 20% off</li>
+            <li>Spend Rs150 - Get 30% off</li>
+        </ul>
+    </section>
+    
+
+    <section id="cart" class="section cart-section">
+        <h2>Your Cart</h2>
+        <div class="cart-content">
+            <div class="cart-text">
+                <p>Your selected items will appear here.</p>
+            </div>
+            <div class="cart-image">
+                <img src="cart-image.jpg" alt="Cart Illustration">
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="about" class="section about-us-section">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-item">
+                <img src="team-member1.jpg" alt="Team Member 1" class="about-img">
+                <div class="about-info">
+                    <h3>Vishal Kumar</h3>
+                    <p>Founder & CEO</p>
+                    <p>Vishal has over 10 years of experience in the grocery business. He is dedicated to sourcing the freshest produce for our community.</p>
+                </div>
+            </div>
+            <div class="about-item">
+                <img src="aii.jpg" alt="Team Member 2" class="about-img">
+                <div class="about-info">
+                    <h3>Team Mate</h3>
+                    <p>Operations Manager</p>
+                    <p>Shraddha ensures everything runs smoothly at the shop. She oversees inventory, customer service, and day-to-day operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="login" class="section login-section">
+        <h2>Login Information</h2>
+        <div class="login-options">
+            <div class="option">
+                <h3>Customer</h3>
+                <form action="#" method="post" class="login-form">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="tel" name="whatsapp" placeholder="Whatsapp Number" required>
+                    <input type="text" name="address" placeholder="Address" required>
+                    <input type="text" name="pincode" placeholder="Pincode" required>
+                    <button type="submit" class="register-btn">Register</button>
+                </form>
+            </div>
+    
+            <div class="option">
+                <h3>Shopkeeper</h3>
+                <form action="#" method="post" class="login-form">
+                    <input type="text" name="shopname" placeholder="Shop Name" required>
+                    <input type="text" name="staffname" placeholder="Staff Name" required>
+                    <input type="tel" name="staffphone" placeholder="Staff Phone Number" required>
+                    <input type="text" name="shopaddress" placeholder="Shop Address" required>
+                    <input type="text" name="shop_pincode" placeholder="Pincode" required>
+                    <button type="submit" class="register-btn">Register</button>
+                </form>
+            </div>
+        </div>
+        <!-- Google Maps Display Section -->
+        <div id="map" style="height: 400px; width: 100%; margin-top: 2rem;"></div>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2024 Local Grocery Shop. All Rights Reserved.</p>
+    </footer>
+    <script>
+        let map;
+        let geocoder;
+        let marker;
+
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+            const defaultLocation = { lat: 20.5937, lng: 78.9629 };  // Default center (India)
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: defaultLocation,
+                zoom: 6,
+            });
+            marker = new google.maps.Marker({
+                position: defaultLocation,
+                map: map,
+                title: "Location",
+            });
+        }
+
+        function updateMap() {
+            const customerPincode = document.getElementById('customer-pincode').value || document.getElementById('shopkeeper-pincode').value;
+
+            if (customerPincode.length === 6) {  // Check if Pincode length is valid
+                geocodePincode(customerPincode);
+            }
+        }
+
+        function geocodePincode(pincode) {
+            geocoder.geocode({ 'address': pincode }, (results, status) => {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        // Initialize map on page load
+        window.onload = initMap;
+    </script>
+</body>
+</html>
